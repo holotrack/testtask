@@ -1,29 +1,4 @@
-ingress:
-  enabled: true
-  annotations:
-    ## This Ingress must define at least 1 rule so it is explicit rule the
-    ## same as default in `aws_lb.ingress.default_action`
-    alb.ingress.kubernetes.io/actions.default: |
-      {
-        "type": "fixed-response",
-        "fixedResponseConfig": {
-          "contentType": "text/plain",
-          "statusCode": "404",
-          "messageBody": ""
-        }
-      }
-    ## Name of the ALB
-    alb.ingress.kubernetes.io/group.name: terraform-hellowworld-ingress
-    ## The lowest possible priority
-    alb.ingress.kubernetes.io/group.order: "1000"
-    ## Name of the ALB
-    alb.ingress.kubernetes.io/load-balancer-name: terraform-hellowworld-ingress
-    ## Must be the same as in `aws_lb.ingress.internal`
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    ## Uses AWS Load Balancer Controller
-    kubernetes.io/ingress.class: alb
-  hosts:
-    - paths:
-        - path: /
-          pathType: Prefix
+service:
+  type: NodePort
+  port: 8080
 
