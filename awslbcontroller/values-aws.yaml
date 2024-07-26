@@ -2,3 +2,17 @@ service:
   type: NodePort
   port: 8080
 
+
+ingress:
+  enabled: true
+  className: "alb"
+  annotations:
+    alb.ingress.kubernetes.io/group.name: terraform-hellowworld-ingress
+    alb.ingress.kubernetes.io/group.order: "1000"
+    alb.ingress.kubernetes.io/load-balancer-name: terraform-hellowworld-ingress
+    alb.ingress.kubernetes.io/scheme: internet-facing
+  hosts:
+    - paths:
+        - path: /
+          pathType: Prefix
+
