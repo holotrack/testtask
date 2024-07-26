@@ -3,6 +3,6 @@ variable "aws_region" {
 }
 
 variable "cluster_name" {
-  default = "terraform-eks-hello"
+  default = "terraform-hellowworld"
   type    = string
 }

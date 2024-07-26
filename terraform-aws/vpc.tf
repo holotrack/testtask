@@ -8,6 +8,7 @@ resource "aws_vpc" "hello" {
 
 }
 
+# requried for multizone eks installation
 resource "aws_subnet" "hello" {
   count = 2
 

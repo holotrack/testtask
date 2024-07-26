@@ -1,0 +1,10 @@
+ingress:
+  enabled: true
+  className: "azure-application-gateway"
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - paths:
+        - path: /
+          pathType: ImplementationSpecific
