@@ -27,4 +27,3 @@ Command for helm deploy:
 
 `helm install my-hello cloudecho/hello -n default --version=0.1.2 -f helloapp/values-{cloud}.yaml`
 
-Separate creation of LoadBalancer was not required becasue i use K8S LoadBalancer service type, which is handling it automatically.
