@@ -15,6 +15,11 @@ resource "azurerm_subnet" "internal" {
   virtual_network_name = azurerm_virtual_network.testapp.name
   resource_group_name  = azurerm_resource_group.testapp.name
   address_prefixes     = ["10.1.0.0/22"]
+
+  depends_on = [
+    azurerm_resource_group.testapp,
+    azurerm_virtual_network.testapp,
+  ]
 }
 
 resource "azurerm_subnet" "gateway" {
@@ -22,6 +27,11 @@ resource "azurerm_subnet" "gateway" {
   virtual_network_name = azurerm_virtual_network.testapp.name
   resource_group_name  = azurerm_resource_group.testapp.name
   address_prefixes     = ["10.1.4.0/22"]
+
+  depends_on = [
+    azurerm_resource_group.testapp,
+    azurerm_virtual_network.testapp,
+  ]
 }
 
 
@@ -46,6 +56,12 @@ resource "azurerm_kubernetes_cluster" "testapp" {
   identity {
     type = "SystemAssigned"
   }
+
+  depends_on = [
+    azurerm_subnet.gateway,
+    azurerm_resource_group.testapp,
+    azurerm_subnet.internal,
+  ]
 }
 
 resource "azurerm_role_assignment" "aks_agic_integration" {
